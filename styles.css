@@ -1,0 +1,15 @@
+.path-local-mybookmarks h1 {margin-top:0;}
+.boomarklist{background:white; padding:10 0 10 0; margin: 10 0 10 0; border: solid 1px #E7E5DC; margin-bottom:20px; margin-top:20px;}
+.boomarklist li { cursor:move; background-color:#FFFFFF; vertical-align:middle;}
+.boomarklist ul {list-style:none; padding: 10px 0 10px 25px;margin:0px;}
+.boomarklist li a {margin-left:50px; }
+.boomarklist li img {vertical-align:middle;}
+.boomarklist .delete_text {color:#666666;}
+.boomarklist li:hover{background-color:#E9E9E9; border:dashed #666666 thin;}
+.tablebookname{width:50%;}
+.boomarklist tr {padding:0; height:12px;}
+.boomarklist table {margin-bottom:0;}
+.bookmarkfolder{background:white; padding: 5px 5px 5px 5px; border: solid 1px #E7E5DC; margin-bottom:20px; margin-top:10px;}
+.bookmarkfolder label {margin-right:5px;}
+.bookmarkfolder input{margin-right: 20px;}
+.previouspage{margin-bottom:20px;}

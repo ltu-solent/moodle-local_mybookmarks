@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/mybookmarks/db" VERSION="2012061924" COMMENT="XMLDB file for local_mybookmarks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+    <TABLE NAME="mybookmarks" COMMENT="Defines mybookmarks">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="user"/>
+        <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="id" NEXT="url"/>
+		<FIELD NAME="url" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="user" NEXT="bookmark_name"/>
+		<FIELD NAME="bookmark_name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="url" NEXT="sort_order" />
+		<FIELD NAME="sort_order" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true"  SEQUENCE="false" PREVIOUS="bookmark_name" NEXT="bookmark_folder"/>
+		<FIELD NAME="bookmark_folder" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="sort_order" />
+      </FIELDS>
+     <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
