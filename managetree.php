@@ -37,37 +37,41 @@ echo '<link rel="stylesheet" type="text/css" href="styles.css">';//PICK UP THE S
      echo '<ul id="sortme">';
 
 	
-	$con = mysql_connect($CFG->dbhost ,$CFG->dbuser,$CFG->dbpass);//CONNECT TO THE DATABASE
-if (!$con)
-{
-die('Could not connect: ' . mysql_error());//IF CONNECTION FAILS THROW AN ERROR MESSAGE
-}
-mysql_select_db("moodle", $con);
+	// $con = mysql_connect($CFG->dbhost ,$CFG->dbuser,$CFG->dbpass);//CONNECT TO THE DATABASE
+// if (!$con)
+// {
+// die('Could not connect: ' . mysql_error());//IF CONNECTION FAILS THROW AN ERROR MESSAGE
+// }
+// mysql_select_db("moodle", $con);
+$result = $DB->get_records_menu('mybookmarks', array('user'=>$USER->id), 'sort_order ASC', '*');
+echo "Stop";
+die();
 ////TOP LEVEL////////
-     echo '<ul id="sortme">';
-$result = mysql_query("SELECT * FROM `mdl_mybookmarks` WHERE user='".$USER->id."' ORDER BY `sort_order` ASC") or die(mysql_error());
-while($row = mysql_fetch_array($result)) {
-echo '<li id="menu_' . $row['id'] . '" >';
-echo '<table>';
-echo '<tbody>';
-echo '<tr>';
-echo '<td class="tablebookname">';
-echo '<form name="deletebookmark'.$row['id'].'" method="post" action="" id ="deletebookmark'.$row['id'].'">';
-echo '<input type="hidden" name="bookmark" value="'.$row['bookmark_name'].'">';
-echo $row['bookmark_name'];
-echo '</td>';
-echo '<td class="tabledelete">';
- echo' <a href="delete.php?id='.$row['id'].'"><img class="iconsmall" src="'.$CFG->wwwroot.'/theme/image.php?theme='.current_theme().'&image=t%2Fdelete" title="Delete" alt="Delete"></a> <span class="delete_text">(Delete bookmark)</span>';
-echo '</form>';
-echo '</td>';
-echo '</tr>';
-echo '</tbody>';
-echo '</table>';
-echo "</li>\n";
+echo '<ul id="sortme">';
+// $result = mysql_query("SELECT * FROM `mdl_mybookmarks` WHERE user='".$USER->id."' ORDER BY `sort_order` ASC") or die(mysql_error());
+// while($row = mysql_fetch_array($result)) {
+foreach($result as $k=>$v){
+	echo '<li id="menu_' . $row['id'] . '" >';
+	echo '<table>';
+	echo '<tbody>';
+	echo '<tr>';
+	echo '<td class="tablebookname">';
+	echo '<form name="deletebookmark'.$row['id'].'" method="post" action="" id ="deletebookmark'.$row['id'].'">';
+	echo '<input type="hidden" name="bookmark" value="'.$row['bookmark_name'].'">';
+	echo $row['bookmark_name'];
+	echo '</td>';
+	echo '<td class="tabledelete">';
+	 echo' <a href="delete.php?id='.$row['id'].'"><img class="iconsmall" src="'.$CFG->wwwroot.'/theme/image.php?theme='.current_theme().'&image=t%2Fdelete" title="Delete" alt="Delete"></a> <span class="delete_text">(Delete bookmark)</span>';
+	echo '</form>';
+	echo '</td>';
+	echo '</tr>';
+	echo '</tbody>';
+	echo '</table>';
+	echo "</li>\n";
 
 }
 
-	echo '</ul>';
+echo '</ul>';
 ///////END TOP[ LEVEL/////////////////	
 
 $resultfolders = mysql_query("SELECT * FROM `mdl_mybookmarks_folders` WHERE user='".$USER->id."' ORDER BY `sort_order` ASC") or die(mysql_error());
