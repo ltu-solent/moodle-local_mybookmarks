@@ -23,7 +23,7 @@ if (isset($_POST['submitalert'])){
 		$record = new stdClass();
 		$record->id = null;
 		$record->user = $USER->id;
-		$record->url = $pagetobookmark;
+		$record->url = str_replace($CFG->wwwroot, "", $pagetobookmark);
 		$record->bookmark_name = $bookmarkname;
 		$record->sort_order = '';
 		$record->bookmark_folder = '';
@@ -36,8 +36,8 @@ if (isset($_POST['submitalert'])){
 echo $OUTPUT->header();
 echo '<link rel="stylesheet" type="text/css" href="styles.css">';//PICK UP THE STYLE SHEET
 
-if ($_SERVER['HTTP_REFERER'] != $CFG->wwwroot.'/local/mybookmarks/addbookmark.php'){
-	$_SESSION ['pagetobookmark'] = $_SERVER['HTTP_REFERER'];
+if ($_SERVER['HTTP_REFERER'] != $CFG->wwwroot.'/local/mybookmarks/addbookmark.php'){	
+	$_SESSION ['pagetobookmark'] = str_replace($CFG->wwwroot, "", $_SERVER['HTTP_REFERER']);
 	$pagetobookmark = $_SESSION ['pagetobookmark'];
 }
 
