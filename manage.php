@@ -5,12 +5,8 @@ require_once('lib.php');
 global $CFG, $DB, $USER, $PAGE ;
 	
 $bookmarknode = $PAGE->navbar->add('Manage my bookmarks', navigation_node::NODETYPE_BRANCH);
-$jsurl = new moodle_url($CFG->wwwroot.'/local/mybookmarks/scripts/jquery-1.10.2.js');
-$PAGE->requires->js($jsurl,true);	
-$jsurl = new moodle_url($CFG->wwwroot.'/local/mybookmarks/scripts/jquery-ui.1.10.4.min.js');
-$PAGE->requires->js($jsurl,true);
-$jsurl = new moodle_url($CFG->wwwroot.'/local/mybookmarks/scripts/sortme.js');
-$PAGE->requires->js($jsurl,true);	
+
+$PAGE->requires->js_call_amd('local_mybookmarks/sortme', 'init', array());	
 $PAGE->set_context(context_system::instance());
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title("Edit My Bookmarks");
@@ -21,8 +17,6 @@ $browser = get_user_browser();
 if($browser == "ie"){
 	echo '<meta http-equiv="x-ua-compatible" content="IE=8">';
 }
-
-
 
 echo $OUTPUT->header();
 echo '<link rel="stylesheet" type="text/css" href="styles.css">';//PICK UP THE STYLE SHEET
