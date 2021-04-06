@@ -29,7 +29,7 @@ if (isset($_POST['submitalert'])){
 		$record->bookmark_folder = '';
 		$lastinsertid = $DB->insert_record('mybookmarks', $record, $returnid=true, $bulk=false);
 		
-		header('Location:'.$pagetobookmark);
+		header('Location:'.$CFG->wwwroot . $pagetobookmark);
 	}
 }
 
